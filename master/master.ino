@@ -4,30 +4,24 @@
  */
 
 #include "VirtualWire.h"
+#include "Message.h"
 
 const char NAME[10] = "BlueDio";
 const char BPS = '4'; // 4 = 9600 bauds
 const char PASS[10] = "0012";
 
-struct Message
-{
-	String chunk1;
-	String chunk2;
-	String chunk3;
-};
-
-void blink(int digitalPin, int delay)
+void blink(int digitalPin, int _delay)
 {
 	digitalWrite(digitalPin, HIGH);
-	delay(delay);
+	delay(_delay);
 	digitalWrite(digitalPin, LOW);
-	delay(delay);
+	delay(_delay);
 	digitalWrite(digitalPin, HIGH);
 }
 
 void setup() 
 {
-	for(int i = 2, i <= 13; +i)
+	for(int i = 2; i <= 13; ++i)
 		pinMode(i, OUTPUT);
 
 	for(int i = 22; i <= 53; ++i)

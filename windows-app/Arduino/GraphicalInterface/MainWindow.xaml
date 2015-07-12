@@ -1,0 +1,22 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:GraphicalInterface"
+        xmlns:addon="clr-namespace:WpfAutoGrid;assembly=WpfAutoGrid"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:System="clr-namespace:System;assembly=mscorlib" mc:Ignorable="d" x:Class="GraphicalInterface.MainWindow"
+        Title="Bluetooth Control" Height="350" Width="450"
+        SizeChanged="Window_SizeChanged"
+        x:Name="Window">
+    <Grid>
+
+        <addon:AutoGrid RowCount="2" ColumnCount="2" RowHeight="95" ColumnWidth="220" x:Name="Grid" ChildMargin="10" Margin="0,45,0,0">
+            <local:ArduinoDigitalPinSetter OnClick="onOnClick"  OffClick="onOffClick"/>
+        </addon:AutoGrid>
+
+        <Menu Height="25" VerticalAlignment="Top">
+            <Ellipse Name="StatusIndicator" Fill="Red" ToolTip="Not connected." Width="20" Height="20" Stroke="Black"/>
+            <Button Content="View available devices" Click="viewAvailableDevices"/>
+            <Button Content="Add a pin control" Click="addPinControl"/>
+        </Menu>
+    </Grid>
+</Window>

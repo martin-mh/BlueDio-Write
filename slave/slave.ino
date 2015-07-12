@@ -3,14 +3,17 @@
  * See readme for more informations.
  */
 
-#include <VirtualWire.h>
+#include "VirtualWire.h"
+#include "Message.h"
 
-struct Message
+void blink(int digitalPin, int _delay)
 {
-	String chunk1;
-	String chunk2;
-	String chunk3;
-};
+	digitalWrite(digitalPin, HIGH);
+	delay(_delay);
+	digitalWrite(digitalPin, LOW);
+	delay(_delay);
+	digitalWrite(digitalPin, HIGH);
+}
 
 void setup()
 {
@@ -20,6 +23,8 @@ void setup()
 
 	for(int i = 3; i <= 53; ++i)
 		pinMode(i, OUTPUT);
+
+	blink(13, 200);
 }
 
 /* If we receive a message in this format : aa:bb:cc -> chunk1 will have aa then chunk2 will have bb

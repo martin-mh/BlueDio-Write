@@ -1,0 +1,11 @@
+﻿<Window x:Class="GraphicalInterface.DiscoverDevices"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:GraphicalInterface"
+        Title="DiscoverDevices" Height="324" Width="583">
+    <Grid>
+        <Label Content="List of available devices" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+        <ItemsControl Name="devicesList" Margin="0,46,0,0">
+        </ItemsControl>
+    </Grid>
+</Window>
