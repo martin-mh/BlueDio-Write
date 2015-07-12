@@ -5,7 +5,7 @@
 
 #include "VirtualWire.h"
 
-const char NOMBRE[10] = "BlueDio";
+const char NAME[10] = "BlueDio";
 const char BPS = '4'; // 4 = 9600 bauds
 const char PASS[10] = "0012";
 
@@ -16,16 +16,27 @@ struct Message
 	String chunk3;
 };
 
+void blink(int digitalPin, int delay)
+{
+	digitalWrite(digitalPin, HIGH);
+	delay(delay);
+	digitalWrite(digitalPin, LOW);
+	delay(delay);
+	digitalWrite(digitalPin, HIGH);
+}
+
 void setup() 
 {
-	for(int i = 3; i <= 13; ++i)
+	for(int i = 2, i <= 13; +i)
 		pinMode(i, OUTPUT);
 
-	vw_set_tx_pin(2);
+	for(int i = 22; i <= 53; ++i)
+		pinMode(i, OUTPUT);
+
+	vw_set_tx_pin(17);
 	vw_setup(2000);
 
 	// Set up bluetooth et Tx/Rx0
-	Serial.begin(9600);
 	Serial1.begin(9600);
 	Serial1.setTimeout(5000);
 
@@ -36,7 +47,7 @@ void setup()
 	delay(1000);
 
 	Serial1.print("AT+NAME");
-	Serial1.print(NOMBRE);
+	Serial1.print(NAME);
 	delay(1000);
 
 	Serial1.print("AT+BAUD");
@@ -47,7 +58,7 @@ void setup()
 	Serial1.print(PASS);
 	delay(1000);
 
-	digitalWrite(13, HIGH);
+	blink(13, 200);
 }
 
 /* If we receive a message in this format : aa:bb:cc -> chunk1 will have aa then chunk2 will have bb
@@ -98,6 +109,5 @@ void loop()
 		String message = Serial1.readStringUntil(0x0D0A);
 		Message command = proccessString(message);
 		proccessCommand(command);
-		Serial.println(message);
 	}
 }

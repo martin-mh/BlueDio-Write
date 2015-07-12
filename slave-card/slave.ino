@@ -14,14 +14,11 @@ struct Message
 
 void setup()
 {
-	Serial.begin(9600);
-	Serial.println("Tuto VirtualWire");
-
 	vw_setup(2000);
 	vw_set_rx_pin(2);
 	vw_rx_start();
 
-	for(int i = 3; i <= 13; ++i)
+	for(int i = 3; i <= 53; ++i)
 		pinMode(i, OUTPUT);
 }
 
@@ -71,7 +68,6 @@ void loop()
 			
 			Message command = proccessString(stringReceived);
 			proccessCommand(command);
-			Serial.println(stringReceived);
 		}
 	}
 }
